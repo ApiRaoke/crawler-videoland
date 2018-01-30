@@ -36,7 +36,8 @@ class VideolandCrawler(scrapy.Spider):
 
             yield scrapy.Request(
                 response.urljoin(url_next_page),
-                callback=self.parse
+                callback=self.parse_page,
+                meta={'total_pages': total_pages}
             )
 
     def parse_page(self, response):
